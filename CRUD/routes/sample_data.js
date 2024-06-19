@@ -2,12 +2,9 @@ var express = require('express');
 
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
-    res.send('List all sample data');
-});
+var database = require('../connect')
 
-router.get("/add", function (req, res, next) {
-    res.send('Add sample Data');
+router.get('/', function (res, req, next) {
+    var query = "SELECT * FROM sample_data O";
 });
-
 module.exports = router;
