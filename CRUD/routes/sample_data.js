@@ -4,7 +4,7 @@ var router = express.Router();
 
 var database = require('../connect')
 
-router.get('/', function (res, req, next) {
+router.get('/', function (req, res, next) {
     var query = "SELECT * FROM sample_data ORDER BY id DESC";
 
     database.query(query, function (error, data) {
