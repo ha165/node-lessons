@@ -18,6 +18,22 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/add', function (req, res, next) {
-    response.render("sample_data", { title: 'Insert Data into MYSQL', action: 'add' })
+    res.render('sample_data', { title: 'Insert Data into MYSQL', action: 'add' })
+});
+router.post('/add_sample_data', function (req, res, next) {
+    var first_name = req.body.fname;
+    var last_name = req.body.sname;
+    var age = req.body.age;
+    var gender = req.body.gender;
+    var query = `
+     INSERT INTO sample_data(first_name,second_name,age,gender) VALUES ("${first_name}","${last_name}","${age}","${gender}")
+    `;
+    database.query(query, function (error, data) {
+        if (error) {
+            throw error;
+        } else {
+            res.redirect("/sample_data");
+        }
+    });
 });
 module.exports = router;
