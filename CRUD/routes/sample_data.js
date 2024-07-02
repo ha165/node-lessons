@@ -16,4 +16,8 @@ router.get('/', function (req, res, next) {
         }
     });
 });
+
+router.get('/add', function (req, res, next) {
+    response.render("sample_data", { title: 'Insert Data into MYSQL', action: 'add' })
+});
 module.exports = router;

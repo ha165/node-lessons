@@ -19,12 +19,33 @@
             <%= title %>
         </h1>
         <% if(action=='add' ) {%>
+             <div class="card">
+                <div class="card-header">Sample Form</div>
+                <div class="card-body">
+                    <form action="/sample_data/add_ample_data">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="">First Name</label>
+                                    <input type="text" name="fname" id="first_name" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">First Name</label>
+                                    <input type="text" name="fname" id="first_name" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+             </div>
             <% }else{%>
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col">Sample Data</div>
-                            <div class="col"></div>
+                            <div class="col">
+                                <a href="/sample_data/add" class="btn btn-success btn-sm float-end">Add</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -46,7 +67,7 @@
                                             <%= data.first_name %>
                                         </td>
                                         <td>
-                                            <%= data.last_name %>
+                                            <%= data.second_name %>
                                         </td>
                                         <td>
                                             <%= data.age %>
