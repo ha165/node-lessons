@@ -54,5 +54,37 @@ router.get('/edit/:id', function (req, res, next) {
         }
     });
 });
+router.post('/edit/:id', function (request, response, next) {
 
+    var id = request.params.id;
+
+    var first_name = request.body.first_name;
+
+    var last_name = request.body.second_name;
+
+    var age = request.body.age;
+
+    var gender = request.body.gender;
+
+    var query = `
+	UPDATE sample_data 
+	SET first_name = "${first_name}", 
+	second_name = "${last_name}", 
+	age = "${age}", 
+	gender = "${gender}" 
+	WHERE id = "${id}"
+	`;
+
+    database.query(query, function (error, data) {
+
+        if (error) {
+            throw error;
+        }
+        else {
+            response.redirect('/sample_data');
+        }
+
+    });
+
+});
 module.exports = router;
