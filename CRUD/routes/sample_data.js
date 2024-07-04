@@ -36,4 +36,13 @@ router.post('/add_sample_data', function (req, res, next) {
         }
     });
 });
+router.get('/edit/:id', function (req, res, next) {
+    var id = req.params.id;
+
+    var query = `SELECT * FROM sample_data WHERE id = "$(id)"`;
+
+    database.query(query, function (error, data) {
+        express.response.render('sample_data', { title: "Edit Mysql Data", action: 'Edit', sampleData: data[0] });
+    });
+});
 module.exports = router;
