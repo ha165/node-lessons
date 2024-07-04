@@ -58,6 +58,11 @@
                     </form>
                 </div>
             </div>
+
+                <% else if(action == 'edit') {
+                    
+                } %>
+
             <% }else{%>
                 <div class="card">
                     <div class="card-header">
@@ -96,7 +101,8 @@
                                             <%= data.gender %>
                                         </td>
                                         <td>
-                                            <a href="/sample_data/edit/<%= data.id %>" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="/sample_data/edit/<%= data.id %>"
+                                                class="btn btn-primary btn-sm">Edit</a>
                                         </td>
                                     </tr>
                                     <% }); } else { %>
