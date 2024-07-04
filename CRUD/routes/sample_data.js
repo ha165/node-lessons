@@ -39,10 +39,20 @@ router.post('/add_sample_data', function (req, res, next) {
 router.get('/edit/:id', function (req, res, next) {
     var id = req.params.id;
 
-    var query = `SELECT * FROM sample_data WHERE id = "$(id)"`;
+    // Using template literals correctly
+    var query = `SELECT * FROM sample_data WHERE id = ${id}`;
 
     database.query(query, function (error, data) {
-        express.response.render('sample_data', { title: "Edit Mysql Data", action: 'Edit', sampleData: data[0] });
+        if (error) {
+            return res.status(500).send('Database query error');
+        }
+        // Ensure 'data' is defined and has at least one record
+        if (data.length > 0) {
+            res.render('sample_data', { title: "Edit Mysql Data", action: 'edit', sampleData: data[0] });
+        } else {
+            res.status(404).send('Record not found');
+        }
     });
 });
+
 module.exports = router;
