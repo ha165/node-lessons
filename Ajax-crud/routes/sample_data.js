@@ -30,7 +30,7 @@ router.post("/action", function (request, response, next) {
   if (action == 'Add') {
     var first_name = request.body.first_name;
 
-    var second_name = request.body.last_name;
+    var second_name = request.body.second_name;
 
     var age = request.body.age;
 
