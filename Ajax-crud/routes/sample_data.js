@@ -30,7 +30,7 @@ router.post("/action", function (request, response, next) {
   if (action == 'Add') {
     var first_name = request.body.first_name;
 
-    var last_name = request.body.last_name;
+    var second_name = request.body.last_name;
 
     var age = request.body.age;
 
@@ -38,8 +38,8 @@ router.post("/action", function (request, response, next) {
 
     var query = `
 		INSERT INTO sample_data 
-		(first_name, last_name, age, gender) 
-		VALUES ("${first_name}", "${last_name}", "${age}", "${gender}")
+		(first_name, second_name, age, gender) 
+		VALUES ("${first_name}", "${second_name}", "${age}", "${gender}")
 		`;
 
     database.query(query, function (error, data) {
