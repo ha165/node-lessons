@@ -79,7 +79,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Last Name</label>
-                        <input type="text" name="second_name" id="last_name" class="form-control" />
+                        <input type="text" name="last_name" id="last_name" class="form-control" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Gender</label>
@@ -105,8 +105,11 @@
 </div>
 
 <script>
+
     $(document).ready(function () {
+
         load_data();
+
         function load_data() {
             $.ajax({
                 url: "http://localhost:3000/sample_data/action",
@@ -115,45 +118,56 @@
                 dataType: "JSON",
                 success: function (data) {
                     var html = '';
+
                     if (data.data.length > 0) {
                         for (var count = 0; count < data.data.length; count++) {
                             html += `
-                               <tr>
-                                 <td>`+ data.data[count].first_name + `</td>
-                                 <td>`+ data.data[count].second_name + `</td>
-                                 <td>`+ data.data[count].gender + `</td>
-                                 <td>`+ data.data[count].age + `</td>
-                                 <td></td>
-                               </tr>
-                            `;
+                        <tr>
+                            <td>`+ data.data[count].first_name + `</td>
+                            <td>`+ data.data[count].last_name + `</td>
+                            <td>`+ data.data[count].gender + `</td>
+                            <td>`+ data.data[count].age + `</td>
+                            <td></td>
+                        </tr>
+                        `;
                         }
                     }
+
                     $('#sample_data tbody').html(html);
                 }
             });
         }
+
         $('#add_data').click(function () {
+
             $('#dynamic_modal_title').text('Add Data');
+
             $('#sample_form')[0].reset();
+
             $('#action').val('Add');
+
             $('#action_button').text('Add');
+
             $('#action_modal').modal('show');
+
         });
+
         $('#sample_form').on('submit', function (event) {
+
             event.preventDefault();
 
             $.ajax({
                 url: "http://localhost:3000/sample_data/action",
-                method: 'POST',
+                method: "POST",
                 data: $('#sample_form').serialize(),
                 dataType: "JSON",
                 beforeSend: function () {
-                    $('#action_button').attr('disabled', 'disabled')
+                    $('#action_button').attr('disabled', 'disabled');
                 },
                 success: function (data) {
                     $('#action_button').attr('disabled', false);
 
-                    $('#message').html('<div class="alert alert-success">' + data.success + '</div>');
+                    $('#message').html('<div class="alert alert-success">' + data.message + '</div>');
 
                     $('#action_modal').modal('hide');
 
@@ -164,6 +178,8 @@
                     }, 5000);
                 }
             });
+
         });
     });
+
 </script>
