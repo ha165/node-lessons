@@ -139,5 +139,31 @@
             $('#action_button').text('Add');
             $('#action_modal').modal('show');
         });
+        $('#sample_form').on('submit', function (event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: "http://localhost:3000/sample_data/action",
+                method: 'POST',
+                data: $('#sample_form').serialize(),
+                dataType: "JSON",
+                beforeSend: function () {
+                    $('#action_button').attr('disabled', 'disabled')
+                },
+                success: function (data) {
+                    $('#action_button').attr('disabled', false);
+
+                    $('#message').html('<div class="alert alert-success">' + data.success + '</div>');
+
+                    $('#action_modal').modal('hide');
+
+                    load_data();
+
+                    setTimeout(function () {
+                        $('#message').html('');
+                    }, 5000);
+                }
+            });
+        });
     });
 </script>
